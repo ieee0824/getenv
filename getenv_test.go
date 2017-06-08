@@ -2,13 +2,12 @@ package getenv
 
 import (
 	"testing"
-	"os"
 )
 
 func TestConvertStringToBoolean(t *testing.T) {
 	tests := []struct {
 		input string
-		want bool
+		want  bool
 	}{
 		{"true", true},
 		{"t", true},
@@ -31,4 +30,3 @@ func TestConvertStringToBoolean(t *testing.T) {
 		}
 	}
 }
-

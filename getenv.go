@@ -2,6 +2,7 @@ package getenv
 
 import (
 	"os"
+	"strconv"
 	"strings"
 )
 
@@ -39,4 +40,20 @@ func String(key string, def ...string) string {
 		return d
 	}
 	return v
+}
+
+func Int(key string, def ...int) int {
+	var d int
+	if len(def) != 0 {
+		d = def[0]
+	}
+	v := os.Getenv(key)
+	if v == "" {
+		return d
+	}
+	i, err := strconv.Atoi(v)
+	if err != nil {
+		return 0
+	}
+	return i
 }
