@@ -53,7 +53,7 @@ func Int(key string, def ...int) int {
 	}
 	i, err := strconv.Atoi(v)
 	if err != nil {
-		return 0
+		return d
 	}
 	return i
 }
