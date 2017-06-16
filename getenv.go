@@ -2,8 +2,8 @@ package getenv
 
 import (
 	"os"
-	"strconv"
 	"strings"
+	"strconv"
 )
 
 func convertStringToBoolean(s string) bool {
@@ -57,3 +57,4 @@ func Int(key string, def ...int) int {
 	}
 	return i
 }
+
