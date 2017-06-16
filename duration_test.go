@@ -16,6 +16,8 @@ func TestDuration(t *testing.T) {
 		{"", 0},
 		{"a", 0},
 		{"00af00", 0},
+		{"0h30m", 30*time.Minute},
+		{"20s", 20*time.Second},
 	}
 
 	for _, test := range tests {
