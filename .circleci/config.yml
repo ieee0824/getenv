@@ -2,19 +2,15 @@ version: 2
 jobs:
     build:
         docker:
-            - image: golang:1.8.3
+            - image: golang:1.16.4
         working_directory: /go/src/github.com/ieee0824/getenv
         steps:
             - checkout
             - run:
-                name: install glide
-                command: |
-                    go get github.com/Masterminds/glide
-            - run:
                 name: install packages
                 command: |
-                    glide i
+                    go get -u -v ./...
             - run:
                 name: run test
                 command: |
-                    go test $(glide nv)
+                    go test ./...
