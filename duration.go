@@ -1,11 +1,12 @@
 package getenv
 
 import (
-	"time"
 	"os"
+	"time"
 )
 
 func Duration(key string, def ...interface{}) time.Duration {
+	Logger.Dump(key, def)
 	var d time.Duration
 	if len(def) != 0 {
 		if i, ok := def[0].(int); ok {
@@ -13,7 +14,7 @@ func Duration(key string, def ...interface{}) time.Duration {
 		} else if dr, ok := def[0].(time.Duration); ok {
 			d = dr
 		} else if s, ok := def[0].(string); ok {
-			 d, _ = time.ParseDuration(s)
+			d, _ = time.ParseDuration(s)
 		}
 	}
 
@@ -25,5 +26,3 @@ func Duration(key string, def ...interface{}) time.Duration {
 
 	return d
 }
-
-
