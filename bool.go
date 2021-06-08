@@ -1,8 +1,8 @@
 package getenv
 
 import (
-	"strings"
 	"os"
+	"strings"
 )
 
 func convertStringToBoolean(s string) bool {
@@ -16,6 +16,7 @@ func convertStringToBoolean(s string) bool {
 }
 
 func Bool(key string, def ...bool) bool {
+	Logger.Dump(key, def)
 	var d bool
 	if len(def) != 0 {
 		d = def[0]

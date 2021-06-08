@@ -1,12 +1,13 @@
 package getenv
 
 import (
+	"log"
 	"os"
 	"strconv"
-	"log"
 )
 
 func Int(key string, def ...int) int {
+	Logger.Dump(key, def)
 	var d int
 	if len(def) != 0 {
 		d = def[0]
@@ -22,7 +23,8 @@ func Int(key string, def ...int) int {
 	return i
 }
 
-func Int32(key string, def ...int32) (int32) {
+func Int32(key string, def ...int32) int32 {
+	Logger.Dump(key, def)
 	var d int32
 	if len(def) != 0 {
 		d = def[0]
@@ -39,7 +41,8 @@ func Int32(key string, def ...int32) (int32) {
 	return int32(i32)
 }
 
-func Int64(key string, def ...int64) (int64) {
+func Int64(key string, def ...int64) int64 {
+	Logger.Dump(key, def)
 	var d int64
 	if len(def) != 0 {
 		d = def[0]
@@ -56,7 +59,8 @@ func Int64(key string, def ...int64) (int64) {
 	return int64(i64)
 }
 
-func Int16(key string, def ...int16) (int16) {
+func Int16(key string, def ...int16) int16 {
+	Logger.Dump(key, def)
 	var d int16
 	if len(def) != 0 {
 		d = def[0]
