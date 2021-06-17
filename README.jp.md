@@ -1,8 +1,8 @@
 # getenv
 
-English | [日本語](./README.jp.md)
+[English](./README.md) | 日本語
 
-This is a package for getting environment variables with arbitrary types.
+環境変数を取得時に任意の型に変換して取得することができます.
 
 [![CircleCI](https://circleci.com/gh/ieee0824/getenv.svg?style=shield)](https://circleci.com/gh/ieee0824/getenv)
 
