@@ -3,6 +3,7 @@
 [English](./README.md) | 日本語
 
 環境変数を取得時に任意の型に変換して取得することができます.
+また環境変数に値が存在しないときはデフォルト値を設定しておいて取得することができます.
 
 [![CircleCI](https://circleci.com/gh/ieee0824/getenv.svg?style=shield)](https://circleci.com/gh/ieee0824/getenv)
 
