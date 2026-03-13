@@ -11,8 +11,8 @@ func String(key string, def ...string) string {
 	if len(def) != 0 {
 		d = def[0]
 	}
-	v := os.Getenv(key)
-	if v == "" {
+	v, ok := os.LookupEnv(key)
+	if !ok {
 		return d
 	}
 	return v
@@ -26,10 +26,11 @@ func StringSlice(key string, def ...[]string) []string {
 	if len(def) != 0 {
 		d = def[0]
 	}
-	v := os.Getenv(key)
-	if v == "" && len(d) == 0 {
-		return []string{}
-	} else if v == "" && len(d) != 0 {
+	v, ok := os.LookupEnv(key)
+	if !ok {
+		if len(d) == 0 {
+			return []string{}
+		}
 		return d
 	}
 

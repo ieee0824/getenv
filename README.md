@@ -4,7 +4,7 @@ English | [日本語](./README.jp.md)
 
 This is a package for getting environment variables with arbitrary types.
 
-[![CircleCI](https://circleci.com/gh/ieee0824/getenv.svg?style=shield)](https://circleci.com/gh/ieee0824/getenv)
+[![test](https://github.com/ieee0824/getenv/actions/workflows/test.yml/badge.svg)](https://github.com/ieee0824/getenv/actions/workflows/test.yml)
 
 # example
 
@@ -31,12 +31,6 @@ fmt.Println(getenv.Duration("ANY_ENV","120s"))
 fmt.Println(getenv.Duration("ANY_ENV", 60 * time.Second))
 fmt.Println(getenv.Duration("ANY_ENV", "1h30m20s"))
 
-os.Setenv("ANY_ENV", "60h")
-fmt.Println(getenv.Duration("ANY_ENV"))
-fmt.Println(getenv.Duration("ANY_ENV", 60))
-fmt.Println(getenv.Duration("ANY_ENV","120s"))
-fmt.Println(getenv.Duration("ANY_ENV", 60 * time.Second))
-fmt.Println(getenv.Duration("ANY_ENV", "1h30m20s"))
 ```
 
 ```
@@ -50,9 +44,4 @@ fmt.Println(getenv.Duration("ANY_ENV", "1h30m20s"))
 60h0m0s
 60h0m0s
 60h0m0s
-18h12m16s
-18h12m16s
-18h12m16s
-18h12m16s
-18h12m16s
 ```

@@ -20,7 +20,7 @@ func TestDuration(t *testing.T) {
 		{"", "60s", 60 * time.Second},
 		{"60s", nil, 60*time.Second},
 		{"a", nil, 0},
-		{"a", 60, 0},
+		{"a", 60, 60 * time.Second},
 	}
 
 	key := "TEST_DURATION"

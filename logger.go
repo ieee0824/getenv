@@ -42,6 +42,13 @@ func (l *EnvLogger) dumpDotEnv(key string, def ...interface{}) error {
 		return nil
 	}
 
+	if def[0] == nil {
+		if _, err := l.w.Write([]byte("\n")); err != nil {
+			return err
+		}
+		return nil
+	}
+
 	var v interface{}
 	switch reflect.TypeOf(def[0]).Kind() {
 	case reflect.Slice:

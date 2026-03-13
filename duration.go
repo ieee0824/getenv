@@ -18,11 +18,14 @@ func Duration(key string, def ...interface{}) time.Duration {
 		}
 	}
 
-	v := os.Getenv(key)
-	if v == "" {
+	v, ok := os.LookupEnv(key)
+	if !ok {
 		return d
 	}
-	d, _ = time.ParseDuration(v)
+	parsed, err := time.ParseDuration(v)
+	if err != nil {
+		return d
+	}
 
-	return d
+	return parsed
 }

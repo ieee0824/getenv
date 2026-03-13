@@ -12,12 +12,13 @@ func Int(key string, def ...int) int {
 	if len(def) != 0 {
 		d = def[0]
 	}
-	v := os.Getenv(key)
-	if v == "" {
+	v, ok := os.LookupEnv(key)
+	if !ok {
 		return d
 	}
 	i, err := strconv.Atoi(v)
 	if err != nil {
+		log.Printf("parse error: input: %v, %v\n", v, err.Error())
 		return d
 	}
 	return i
@@ -29,8 +30,8 @@ func Int32(key string, def ...int32) int32 {
 	if len(def) != 0 {
 		d = def[0]
 	}
-	v := os.Getenv(key)
-	if v == "" {
+	v, ok := os.LookupEnv(key)
+	if !ok {
 		return d
 	}
 	i32, err := strconv.ParseInt(v, 10, 32)
@@ -47,8 +48,8 @@ func Int64(key string, def ...int64) int64 {
 	if len(def) != 0 {
 		d = def[0]
 	}
-	v := os.Getenv(key)
-	if v == "" {
+	v, ok := os.LookupEnv(key)
+	if !ok {
 		return d
 	}
 	i64, err := strconv.ParseInt(v, 10, 64)
@@ -65,8 +66,8 @@ func Int16(key string, def ...int16) int16 {
 	if len(def) != 0 {
 		d = def[0]
 	}
-	v := os.Getenv(key)
-	if v == "" {
+	v, ok := os.LookupEnv(key)
+	if !ok {
 		return d
 	}
 	i16, err := strconv.ParseInt(v, 10, 16)

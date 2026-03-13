@@ -23,8 +23,8 @@ func Bool(key string, def ...bool) bool {
 	} else {
 		d = false
 	}
-	v := os.Getenv(key)
-	if v == "" {
+	v, ok := os.LookupEnv(key)
+	if !ok {
 		return d
 	}
 	return convertStringToBoolean(v)
