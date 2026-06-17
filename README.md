@@ -45,3 +45,12 @@ fmt.Println(getenv.Duration("ANY_ENV", "1h30m20s"))
 60h0m0s
 60h0m0s
 ```
+
+# dotenv dump
+
+Setting `GETENV_DUMP_MODE=dotenv` makes every accessor emit a `KEY=` line for each
+environment variable it reads, which is handy for generating a `.env` template.
+
+Default values are **masked** (`KEY=`) so that secrets accidentally passed as a default
+are not leaked to the dump target. Call `getenv.Logger.DumpValues(true)` to include the
+default values, and `getenv.Logger.SetWriter(w)` to redirect the output.
