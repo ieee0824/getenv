@@ -58,6 +58,10 @@ fmt.Println(getenv.Duration("ANY_ENV", "1h30m20s"))
 18h12m16s
 ```
 
+# Duration の単位
+
+`Duration` のデフォルト値は複数の型を受け付けます. **整数(`int`/`int32`/`int64`)と `float64` は「秒」として解釈**され, `time.Duration` はそのまま(ナノ秒)使われます. そのため `getenv.Duration("T", 60)` は 60 秒ですが, `getenv.Duration("T", time.Duration(60))` は 60 *ナノ秒* です(秒で渡すなら `getenv.Duration("T", 60*time.Second)`). 文字列は `time.ParseDuration` でパースされます(例: `"90s"`, `"1h30m"`). 不正な文字列や未対応の型はログ出力して `0` にフォールバックします.
+
 # dotenv ダンプ
 
 `GETENV_DUMP_MODE=dotenv` を設定すると、各アクセサが読み取った環境変数ごとに `KEY=` 行を出力します. `.env` テンプレートの生成に便利です.

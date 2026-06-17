@@ -46,6 +46,10 @@ fmt.Println(getenv.Duration("ANY_ENV", "1h30m20s"))
 60h0m0s
 ```
 
+# Duration units
+
+`Duration` accepts a default of several types. **Integer defaults (`int`, `int32`, `int64`) and `float64` are interpreted as seconds**, while a `time.Duration` default is used as-is (a nanosecond count). So `getenv.Duration("T", 60)` is 60 seconds, but `getenv.Duration("T", time.Duration(60))` is 60 *nanoseconds* — pass `getenv.Duration("T", 60*time.Second)` instead. String defaults are parsed with `time.ParseDuration` (e.g. `"90s"`, `"1h30m"`); an invalid string or an unsupported default type is logged and falls back to `0`.
+
 # dotenv dump
 
 Setting `GETENV_DUMP_MODE=dotenv` makes every accessor emit a `KEY=` line for each
