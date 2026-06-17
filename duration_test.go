@@ -21,6 +21,16 @@ func TestDuration(t *testing.T) {
 		{"60s", nil, 60*time.Second},
 		{"a", nil, 0},
 		{"a", 60, 60 * time.Second},
+		// numeric default types are interpreted as seconds
+		{"", int64(60), 60 * time.Second},
+		{"", int32(60), 60 * time.Second},
+		{"", float64(1.5), 1500 * time.Millisecond},
+		// invalid string default falls back to 0 (logged, not silent panic)
+		{"", "30", 0},
+		{"", "30sec", 0},
+		// unsupported default type falls back to 0
+		{"", true, 0},
+		{"", uint(60), 0},
 	}
 
 	key := "TEST_DURATION"
