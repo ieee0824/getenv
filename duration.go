@@ -52,7 +52,9 @@ func Duration(key string, def ...interface{}) time.Duration {
 	}
 	parsed, err := time.ParseDuration(v)
 	if err != nil {
-		log.Printf("getenv: failed to parse %q as duration: %v", key, err)
+		// time.ParseDuration embeds the raw value in its error message, so log only
+		// the key to avoid leaking a potentially sensitive environment value.
+		log.Printf("getenv: failed to parse value for %q as duration", key)
 		return d
 	}
 
