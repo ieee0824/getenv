@@ -57,3 +57,9 @@ fmt.Println(getenv.Duration("ANY_ENV", "1h30m20s"))
 18h12m16s
 18h12m16s
 ```
+
+# dotenv ダンプ
+
+`GETENV_DUMP_MODE=dotenv` を設定すると、各アクセサが読み取った環境変数ごとに `KEY=` 行を出力します. `.env` テンプレートの生成に便利です.
+
+デフォルト値は既定で**マスク**されます(`KEY=`). デフォルト値に誤って秘密情報を渡してもダンプ先に漏れないようにするためです. デフォルト値も出力したい場合は `getenv.Logger.DumpValues(true)` を呼び出してください. 出力先は `getenv.Logger.SetWriter(w)` で変更できます.
