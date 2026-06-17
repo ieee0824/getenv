@@ -36,6 +36,31 @@ func TestStringSlice(t *testing.T) {
 			def:    []string{"d", "e", "f"},
 			want:   []string{"a", "b", "c"},
 		},
+		{
+			name:   "env empty string, def empty",
+			envKey: "SOME_ENV",
+			envVal: "",
+			want:   []string{},
+		},
+		{
+			name:   "env empty string, def not empty",
+			envKey: "SOME_ENV",
+			envVal: "",
+			def:    []string{"d", "e", "f"},
+			want:   []string{"d", "e", "f"},
+		},
+		{
+			name:   "trims spaces and drops empty elements",
+			envKey: "SOME_ENV",
+			envVal: " a , b , ,c,",
+			want:   []string{"a", "b", "c"},
+		},
+		{
+			name:   "leading and trailing commas",
+			envKey: "SOME_ENV",
+			envVal: ",a,,b,",
+			want:   []string{"a", "b"},
+		},
 	}
 
 	for _, test := range tests {

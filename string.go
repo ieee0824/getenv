@@ -18,8 +18,11 @@ func String(key string, def ...string) string {
 	return v
 }
 
-// env format
-// SOME_ENV=a,b,c,d,e,f
+// StringSlice resolves key as a comma-separated list, e.g. SOME_ENV=a,b,c.
+//
+// Each element is trimmed of surrounding whitespace and empty elements are dropped, so
+// "a, b," yields ["a", "b"]. An unset or empty value is treated the same: the default
+// is returned when present, otherwise an empty (non-nil) slice.
 func StringSlice(key string, def ...[]string) []string {
 	Logger.Dump(key, def)
 	var d []string
@@ -27,12 +30,19 @@ func StringSlice(key string, def ...[]string) []string {
 		d = def[0]
 	}
 	v, ok := os.LookupEnv(key)
-	if !ok {
+	if !ok || v == "" {
 		if len(d) == 0 {
 			return []string{}
 		}
 		return d
 	}
 
-	return strings.Split(v, ",")
+	parts := strings.Split(v, ",")
+	out := make([]string, 0, len(parts))
+	for _, p := range parts {
+		if p = strings.TrimSpace(p); p != "" {
+			out = append(out, p)
+		}
+	}
+	return out
 }
